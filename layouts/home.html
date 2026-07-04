@@ -10,11 +10,6 @@
       <h1>{{ site.Params.name }}</h1>
       <p class="profile-role">Researcher in Artificial Intelligence, Machine Learning &amp; Deep Learning</p>
       <p class="profile-affil">M.Sc. Student &amp; Research Assistant<br />Department of Computer Science and Engineering<br />Daffodil International University, Dhaka, Bangladesh</p>
-      <ul class="profile-contact">
-        <li><i class="fas fa-location-dot"></i> {{ site.Params.location }}</li>
-        <li><i class="fas fa-envelope"></i> {{ replace site.Params.email "@" " [at] " }}</li>
-        <li><i class="fas fa-phone"></i> {{ site.Params.phone }}</li>
-      </ul>
       <div class="profile-links">
         <a href="{{ site.Params.cvFile | relURL }}" download class="plink plink-primary"><i class="fas fa-file-arrow-down"></i> CV</a>
         <a href="{{ site.Params.social.github }}" target="_blank" rel="noopener" class="plink"><i class="fab fa-github"></i> GitHub</a>
@@ -135,7 +130,7 @@
 <!-- ===== Contact ===== -->
 <section class="section" id="contact">
   <h2 class="section-title">Contact</h2>
-  <p class="cv-lead">For research collaboration, supervision inquiries or anything else, reach me at {{ replace site.Params.email "@" " [at] " }} or use the form below.</p>
+  <p class="cv-lead">For research collaboration, supervision inquiries or anything else, use the form below or connect via <a href="{{ site.Params.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>.</p>
 
   <form class="contact-form" action="https://formsubmit.co/{{ site.Params.email }}" method="POST">
     <input type="hidden" name="_subject" value="New message from personal website" />

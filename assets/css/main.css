@@ -73,10 +73,7 @@ nav ul a:hover { color: var(--accent); text-decoration: none; }
 }
 .profile-head h1 { font-size: clamp(1.9rem, 4vw, 2.5rem); margin-bottom: 6px; }
 .profile-role { color: var(--accent); font-weight: 600; margin-bottom: 10px; }
-.profile-affil { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
-.profile-contact { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 24px; margin-bottom: 18px; }
-.profile-contact li { color: var(--muted); font-size: 0.92rem; }
-.profile-contact i { color: var(--accent); margin-right: 7px; width: 16px; text-align: center; }
+.profile-affil { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
 
 .profile-links, .gallery-links { display: flex; flex-wrap: wrap; gap: 10px; }
 .plink {
@@ -220,7 +217,7 @@ footer { border-top: 1px solid var(--border); margin-top: 60px; background: var(
   .profile { padding-top: 104px; }
   .profile-grid { grid-template-columns: 1fr; text-align: center; gap: 24px; }
   .profile-photo { justify-self: center; width: min(220px, 60vw); }
-  .profile-contact, .profile-links, .interests { justify-content: center; }
+  .profile-links, .interests { justify-content: center; }
   .exp { grid-template-columns: 1fr; gap: 4px; }
   .form-row { grid-template-columns: 1fr; }
 
