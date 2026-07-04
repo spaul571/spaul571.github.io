@@ -1,201 +1,187 @@
-﻿{{ define "main" }}
+{{ define "main" }}
 
-<!-- ===== Hero ===== -->
-<section class="hero" id="home">
-  <div class="hero-text">
-    <span class="badge"><span class="dot"></span> Open to research &amp; collaboration</span>
-    <h1>Hi, I'm <span class="highlight">{{ site.Params.name }}</span></h1>
-    <p class="roles">
-      <i class="fas fa-brain"></i> AI / ML Researcher &nbsp;
-      <i class="fas fa-network-wired"></i> Deep Learning &nbsp;
-      <i class="fas fa-chart-line"></i> Data Science
-    </p>
-    <p class="hero-affil"><i class="fas fa-graduation-cap"></i> {{ site.Params.affiliation }}</p>
-    <p class="hero-lead">{{ site.Params.tagline }}</p>
-    <div class="hero-cta">
-      <a href="#portfolio" class="btn"><i class="fas fa-arrow-right"></i> See My Work</a>
-      <a href="{{ site.Params.cvFile | relURL }}" download class="btn-ghost"><i class="fas fa-download"></i> Download CV</a>
-    </div>
-    <div class="social-links">
-      <a href="{{ site.Params.social.facebook }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="{{ site.Params.social.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="{{ site.Params.social.github }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="frame">
+<!-- ===== About / Profile ===== -->
+<section class="section profile" id="about">
+  <div class="profile-grid">
+    <div class="profile-photo">
       <img src="{{ "img/profile.png" | relURL }}" alt="{{ site.Params.name }}" />
     </div>
+    <div class="profile-head">
+      <h1>{{ site.Params.name }}</h1>
+      <p class="profile-role">Researcher in Artificial Intelligence, Machine Learning &amp; Deep Learning</p>
+      <p class="profile-affil">M.Sc. Student &amp; Research Assistant<br />Department of Computer Science and Engineering<br />Daffodil International University, Dhaka, Bangladesh</p>
+      <ul class="profile-contact">
+        <li><i class="fas fa-location-dot"></i> {{ site.Params.location }}</li>
+        <li><i class="fas fa-envelope"></i> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+        <li><i class="fas fa-phone"></i> {{ site.Params.phone }}</li>
+      </ul>
+      <div class="profile-links">
+        <a href="{{ site.Params.cvFile | relURL }}" download class="plink plink-primary"><i class="fas fa-file-arrow-down"></i> CV</a>
+        <a href="{{ site.Params.social.github }}" target="_blank" rel="noopener" class="plink"><i class="fab fa-github"></i> GitHub</a>
+        <a href="{{ site.Params.social.linkedin }}" target="_blank" rel="noopener" class="plink"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="mailto:{{ site.Params.email }}" class="plink"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- ===== About ===== -->
-<section class="section" id="about">
-  <span class="eyebrow">Get to know me</span>
-  <h2 class="section-title">About Me</h2>
-  <p class="section-sub">Career objective, education &amp; activities</p>
-
-  <div class="about-intro">
+  <div class="bio">
     {{ .Content }}
   </div>
 
-  <h3 class="subhead"><i class="fas fa-graduation-cap"></i> Education</h3>
-  <div class="timeline">
-    {{ range hugo.Data.education }}
-    <div class="timeline-item">
-      <h4>{{ .degree }}</h4>
-      <span class="year">{{ .period }}</span>
-      <p><strong>{{ .institution }}</strong></p>
-      <p>{{ .detail }}</p>
+  <div class="two-col">
+    <div>
+      <h3 class="minihead"><i class="fas fa-flask"></i> Research Interests</h3>
+      <ul class="interests">
+        {{ range site.Params.interests }}
+        <li>{{ . }}</li>
+        {{ end }}
+      </ul>
     </div>
-    {{ end }}
+    <div>
+      <h3 class="minihead"><i class="fas fa-graduation-cap"></i> Education</h3>
+      <ul class="edu-mini">
+        {{ range hugo.Data.education }}
+        <li>
+          <span class="edu-degree">{{ .degree }}</span>
+          <span class="edu-school">{{ .institution }} · {{ .period }}</span>
+          <span class="edu-detail">{{ .detail }}</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
   </div>
 </section>
 
-<!-- ===== Experience ===== -->
-<section class="section" id="experience">
-  <span class="eyebrow">My journey</span>
-  <h2 class="section-title">Experience</h2>
-  <p class="section-sub">Research roles &amp; recognition</p>
-
-  <div class="timeline">
-    {{ range hugo.Data.experience }}
-    <div class="timeline-item">
-      <h4>{{ .title }}</h4>
-      <span class="year">{{ .period }}</span>
-      <p>{{ .organization }}</p>
-      <ul>
-        {{ range .points }}<li>{{ . }}</li>{{ end }}
-      </ul>
-    </div>
-    {{ end }}
-  </div>
-
-  <h3 class="subhead"><i class="fas fa-award"></i> Achievements</h3>
-  <ul class="achievements">
-    {{ range hugo.Data.achievements }}
-    <li><strong>{{ .title }}</strong> — {{ .detail }} <span class="year">{{ .year }}</span></li>
+<!-- ===== News ===== -->
+<section class="section" id="news">
+  <h2 class="section-title">News</h2>
+  <ul class="news-list">
+    {{ range hugo.Data.news }}
+    <li>
+      <span class="news-date">{{ .date }}</span>
+      <span class="news-text">{{ .text | safeHTML }}</span>
+    </li>
     {{ end }}
   </ul>
 </section>
 
-<!-- ===== Research ===== -->
-<section class="section" id="research">
-  <span class="eyebrow">Academic work</span>
-  <h2 class="section-title">Research &amp; Publications</h2>
-  <p class="section-sub">Conference papers &amp; ongoing work</p>
-
-  <div class="cards-grid">
+<!-- ===== Publications ===== -->
+<section class="section" id="publications">
+  <h2 class="section-title">Publications</h2>
+  <ol class="pub-list">
     {{ range hugo.Data.research }}
-    <div class="card">
-      <span class="tag">{{ .status }}</span>
-      <h3>{{ .title }}</h3>
-      <p>{{ .venue | safeHTML }}</p>
-    </div>
+    <li class="pub">
+      <p class="pub-title">{{ .title }}</p>
+      <p class="pub-venue">{{ .venue | safeHTML }}</p>
+      <span class="pub-status">{{ .status }}</span>
+    </li>
     {{ end }}
-  </div>
+  </ol>
 </section>
 
-<!-- ===== Portfolio ===== -->
-<section class="section" id="portfolio">
-  <span class="eyebrow">My work</span>
-  <h2 class="section-title">Portfolio</h2>
-  <p class="section-sub">Projects &amp; graphics design works</p>
-
-  <h3 class="subhead"><i class="fas fa-laptop-code"></i> Projects</h3>
-  <div class="cards-grid">
-    {{ range hugo.Data.projects }}
-    <div class="card">
-      <span class="tag">{{ .tag }}</span>
-      <h3>{{ .name }}</h3>
-      <p>{{ .description }}</p>
-      <div class="project-links">
-        <a href="{{ .link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> {{ .linkLabel }}</a>
+<!-- ===== Experience ===== -->
+<section class="section" id="experience">
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+    {{ range hugo.Data.experience }}
+    <div class="exp">
+      <div class="exp-side">{{ .period }}</div>
+      <div class="exp-body">
+        <h3>{{ .title }}</h3>
+        <p class="exp-org">{{ .organization }}</p>
+        <ul>
+          {{ range .points }}<li>{{ . }}</li>{{ end }}
+        </ul>
       </div>
     </div>
     {{ end }}
   </div>
+</section>
 
-  <h3 class="subhead"><i class="fas fa-palette"></i> Graphics Design</h3>
-  <div class="cards-grid design-grid">
-    {{ range hugo.Data.designs }}
-    <div class="card design-card">
-      <h3><i class="fas fa-images"></i> {{ .name }}</h3>
-      <a href="{{ .link }}" target="_blank" rel="noopener">View Gallery <i class="fas fa-arrow-up-right-from-square"></i></a>
+<!-- ===== Projects ===== -->
+<section class="section" id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="proj-grid">
+    {{ range hugo.Data.projects }}
+    <div class="proj">
+      <span class="proj-tag">{{ .tag }}</span>
+      <h3>{{ .name }}</h3>
+      <p>{{ .description }}</p>
+      <a href="{{ .link }}" target="_blank" rel="noopener" class="proj-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel }}</a>
     </div>
+    {{ end }}
+  </div>
+
+  <h3 class="minihead gallery-head"><i class="fas fa-palette"></i> Graphics &amp; Design Galleries</h3>
+  <div class="gallery-links">
+    {{ range hugo.Data.designs }}
+    <a href="{{ .link }}" target="_blank" rel="noopener" class="plink"><i class="fas fa-images"></i> {{ .name }}</a>
     {{ end }}
   </div>
 </section>
 
-<!-- ===== Skills ===== -->
-<section class="section" id="skills">
-  <span class="eyebrow">What I work with</span>
-  <h2 class="section-title">Skills</h2>
-  <p class="section-sub">Tools &amp; technologies</p>
-
-  {{ range hugo.Data.skills }}
-  <div class="skills-block">
-    <h3><i class="{{ .icon }}"></i> {{ .group }}</h3>
-    <div class="skills-grid">
-      {{ range .items }}
-      <div class="skill"><span>{{ . }}</span></div>
-      {{ end }}
-    </div>
-  </div>
-  {{ end }}
+<!-- ===== Awards ===== -->
+<section class="section" id="awards">
+  <h2 class="section-title">Awards &amp; Achievements</h2>
+  <ul class="award-list">
+    {{ range hugo.Data.achievements }}
+    <li>
+      <span class="award-year">{{ .year }}</span>
+      <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}</span>
+    </li>
+    {{ end }}
+  </ul>
 </section>
 
-<!-- ===== Resume ===== -->
-<section class="section" id="resume">
-  <span class="eyebrow">My background</span>
-  <h2 class="section-title">Resume / CV</h2>
-  <p class="section-sub">Preview or download a copy</p>
+<!-- ===== Skills ===== -->
+<section class="section" id="skills">
+  <h2 class="section-title">Skills</h2>
+  <dl class="skills-table">
+    {{ range hugo.Data.skills }}
+    <div class="skills-row">
+      <dt>{{ .group }}</dt>
+      <dd>{{ delimit .items ", " }}</dd>
+    </div>
+    {{ end }}
+  </dl>
+</section>
 
-  <div class="resume-actions">
-    <a href="{{ site.Params.cvFile | relURL }}" download class="btn"><i class="fas fa-download"></i> Download CV</a>
-  </div>
-
+<!-- ===== CV ===== -->
+<section class="section" id="cv">
+  <h2 class="section-title">Curriculum Vitae</h2>
+  <p class="cv-lead">Preview below, or <a href="{{ site.Params.cvFile | relURL }}" download>download the PDF <i class="fas fa-file-arrow-down"></i></a>.</p>
   <div class="resume-preview">
-    <img src="{{ "img/resume-page-1.png" | relURL }}" alt="Resume page 1" loading="lazy" />
-    <img src="{{ "img/resume-page-2.png" | relURL }}" alt="Resume page 2" loading="lazy" />
+    <img src="{{ "img/resume-page-1.png" | relURL }}" alt="CV page 1" loading="lazy" />
+    <img src="{{ "img/resume-page-2.png" | relURL }}" alt="CV page 2" loading="lazy" />
   </div>
 </section>
 
 <!-- ===== Contact ===== -->
 <section class="section" id="contact">
-  <span class="eyebrow">Let's talk</span>
-  <h2 class="section-title">Get in Touch</h2>
-  <p class="section-sub">Have a question or want to work together?</p>
-
-  <div class="contact-info">
-    <p><i class="fas fa-location-dot"></i> {{ site.Params.location }}</p>
-    <p><i class="fas fa-phone"></i> {{ site.Params.phone }}</p>
-    <p><i class="fas fa-envelope"></i> <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
-  </div>
+  <h2 class="section-title">Contact</h2>
+  <p class="cv-lead">For research collaboration, supervision inquiries or anything else, reach me at <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a> or use the form below.</p>
 
   <form class="contact-form" action="https://formsubmit.co/{{ site.Params.email }}" method="POST">
     <input type="hidden" name="_subject" value="New message from personal website" />
     <input type="hidden" name="_captcha" value="false" />
     <input type="hidden" name="_template" value="table" />
 
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required />
+    <div class="form-row">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+    </div>
 
     <label for="message">Message</label>
     <textarea id="message" name="message" rows="5" required></textarea>
 
-    <button type="submit">Send Message</button>
+    <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
   </form>
-
-  <div class="contact-social">
-    <h3>Or connect with me</h3>
-    <a href="{{ site.Params.social.facebook }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="{{ site.Params.social.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="{{ site.Params.social.github }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-  </div>
 </section>
 
 {{ end }}

@@ -14,6 +14,7 @@ disableKinds = ["taxonomy", "term", "rss"]
   phone = "+880 1985-064618"
   email = "paul15-4868@diu.edu.bd"
   cvFile = "/files/Shrikanta_Paul_CV.pdf"
+  interests = ["Machine Learning", "Deep Learning", "Natural Language Processing", "Computer Vision", "Explainable AI (XAI)"]
   description = "Shrikanta Paul, AI and Machine Learning Researcher. M.Sc. CSE student exploring Artificial Intelligence, Machine Learning and Deep Learning."
 
   [params.social]
