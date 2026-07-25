@@ -196,6 +196,25 @@ nav ul a:hover { color: var(--accent); text-decoration: none; }
 .award-link { white-space: nowrap; font-size: 0.88rem; font-weight: 500; }
 .award-link i { font-size: 0.75rem; }
 
+/* Certificate preview on hover */
+.award-list li.has-preview { position: relative; }
+.award-list li.has-preview .award-text strong { cursor: zoom-in; }
+.award-preview {
+  position: absolute; z-index: 40; left: 128px; top: calc(100% - 8px);
+  display: block; width: min(420px, 78vw); padding: 6px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 14px 34px rgba(31, 41, 51, 0.18);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  pointer-events: none;
+}
+.award-preview img { width: 100%; height: auto; border-radius: 4px; }
+.award-list li.has-preview:hover .award-preview,
+.award-list li.has-preview:focus-within .award-preview {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+@media (hover: none) { .award-preview { display: none; } }
+
 /* ===== CV ===== */
 .cv-lead { color: var(--muted); margin-bottom: 22px; max-width: 74ch; }
 .resume-preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 860px; }
@@ -275,6 +294,7 @@ footer { border-top: 1px solid var(--border); margin-top: 60px; background: var(
 
 @media (max-width: 520px) {
   .award-list li { grid-template-columns: 1fr; gap: 2px; }
+  .award-preview { left: 0; }
   .pub { padding-left: 20px; padding-top: 44px; }
   .pub::before { top: 16px; }
 }

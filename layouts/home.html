@@ -191,10 +191,15 @@
   <h2 class="section-title">Awards &amp; Achievements</h2>
   <ul class="award-list">
     {{ range hugo.Data.achievements }}
-    <li>
+    <li{{ if .image }} class="has-preview"{{ end }}>
       <span class="award-year">{{ .year }}</span>
       <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}{{ if .link }}
         <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}</span>
+      {{ if .image }}
+      <span class="award-preview" aria-hidden="true">
+        <img src="{{ .image | relURL }}" alt="" loading="lazy" width="936" height="662" />
+      </span>
+      {{ end }}
     </li>
     {{ end }}
   </ul>

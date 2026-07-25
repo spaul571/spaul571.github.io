@@ -100,9 +100,18 @@ Copy, paste, fill in. Indentation matters in YAML — keep it exactly as shown (
   year: Fall 2027
   link: files/Certificate-Name.pdf
   linkLabel: View certificate
+  image: img/certificate-name.jpg
 ```
 
-`link` and `linkLabel` are optional. To attach a certificate, drop the PDF into `static/files/` and point `link` at it (path relative to `static/`). `linkLabel` defaults to "View certificate".
+`link`, `linkLabel` and `image` are all optional. To attach a certificate, drop the PDF into `static/files/` and point `link` at it (path relative to `static/`). `linkLabel` defaults to "View certificate".
+
+`image` adds a thumbnail that pops up when the visitor hovers over that award row (hidden on touch screens, which have no hover). Put the picture in `static/img/`. To turn a certificate PDF into one, run:
+
+```powershell
+pdftoppm -jpeg -r 80 static/files/Certificate-Name.pdf static/img/certificate-name
+```
+
+That writes `certificate-name-1.jpg` — rename it to drop the `-1`, then point `image` at it.
 
 ### Research Interest (`hugo.toml`)
 
