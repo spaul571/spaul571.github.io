@@ -197,7 +197,7 @@
         <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}</span>
       {{ if .image }}
       <span class="award-preview" aria-hidden="true">
-        <img src="{{ .image | relURL }}" alt="" loading="lazy" width="936" height="662" />
+        <img src="{{ .image | relURL }}" alt="" loading="lazy" />
       </span>
       {{ end }}
     </li>

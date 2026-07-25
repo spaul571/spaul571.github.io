@@ -1,17 +1,17 @@
 - title: Certificate of Appreciation, CodeConomics 2.0
   detail: Awarded for leadership as an Organizer in planning, coordinating and executing "CodeConomics 2.0 – Programming Challenge for Non-Programmers", Department of Business Administration, Daffodil International University.
   year: April 2026
-  link: files/CodeConomics-2.0-Certificate.pdf
-  linkLabel: View certificate
   image: img/codeconomics-certificate.jpg
 
 - title: Dean's List Award
   detail: Recognized for outstanding academic performance.
   year: Fall 2024
+  image: img/dean-list-fall-2024.jpg
 
 - title: Dean's List Award
   detail: Honored for maintaining excellent academic standing.
   year: Fall 2023
+  image: img/dean-list-fall-2023.jpg
 
 - title: 24th Place, "Unlock the Algorithm" Programming Contest
   detail: Competitive programming contest.
@@ -20,3 +20,4 @@
 - title: Training Course, "Student Brigade on School Sanitation & Hygiene Education" (BRAC)
   detail: Gained practical experience in community health initiatives and leadership.
   year: April 2016
+  image: img/brac-training-2016.jpg

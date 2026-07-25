@@ -103,15 +103,25 @@ Copy, paste, fill in. Indentation matters in YAML — keep it exactly as shown (
   image: img/certificate-name.jpg
 ```
 
-`link`, `linkLabel` and `image` are all optional. To attach a certificate, drop the PDF into `static/files/` and point `link` at it (path relative to `static/`). `linkLabel` defaults to "View certificate".
+`link`, `linkLabel` and `image` are all optional.
 
-`image` adds a thumbnail that pops up when the visitor hovers over that award row (hidden on touch screens, which have no hover). Put the picture in `static/img/`. To turn a certificate PDF into one, run:
+`image` adds a certificate thumbnail that pops up when the visitor hovers over that award row (hidden on touch screens, which have no hover). Put the picture in `static/img/` and keep it about 900 pixels wide so the page stays fast. Portrait and landscape certificates both work.
+
+If your certificate is a PDF, convert it first:
 
 ```powershell
-pdftoppm -jpeg -r 80 static/files/Certificate-Name.pdf static/img/certificate-name
+pdftoppm -jpeg -r 100 "Certificate.pdf" static/img/certificate-name
 ```
 
-That writes `certificate-name-1.jpg` — rename it to drop the `-1`, then point `image` at it.
+That writes `certificate-name-1.jpg` — rename it to drop the `-1`. If the scan comes out sideways or is much wider than 900 pixels, fix it with:
+
+```powershell
+python -c "from PIL import Image; im = Image.open('static/img/certificate-name.jpg').convert('RGB'); im = im.transpose(Image.ROTATE_270); w, h = im.size; im = im.resize((900, round(h*900/w)), Image.LANCZOS); im.save('static/img/certificate-name.jpg', quality=82, optimize=True)"
+```
+
+Drop the `.transpose(...)` part if the image is already the right way up. Use `ROTATE_90` instead if it turns the wrong way.
+
+`link` and `linkLabel` add a visible "View certificate" button next to the award that opens a file — drop the PDF into `static/files/` and point `link` at it (path relative to `static/`). Leave both out if the hover preview is enough.
 
 ### Research Interest (`hugo.toml`)
 
