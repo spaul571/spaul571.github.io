@@ -194,10 +194,9 @@
     <li{{ if .image }} class="has-preview"{{ end }}>
       <span class="award-year">{{ .year }}</span>
       <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}{{ if .link }}
-        <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}{{ if .image }}
-        <button type="button" class="award-zoom" aria-label="View the {{ .title }} certificate full size"><i class="fas fa-magnifying-glass-plus"></i></button>{{ end }}</span>
+        <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}</span>
       {{ if .image }}
-      <span class="award-preview" aria-hidden="true">
+      <span class="award-preview" role="button" tabindex="0" aria-label="View the {{ .title }} certificate full size">
         <img src="{{ .image | relURL }}" alt="" loading="lazy" />
       </span>
       {{ end }}
@@ -227,11 +226,16 @@
       }
 
       document.querySelectorAll(".award-list li.has-preview").forEach(li => {
-        const src = li.querySelector(".award-preview img").getAttribute("src");
+        const thumb = li.querySelector(".award-preview");
+        const src = thumb.querySelector("img").getAttribute("src");
         const title = li.querySelector(".award-text strong").textContent;
-        li.querySelector(".award-zoom").addEventListener("click", () => {
-          if (box.classList.contains("open") && full.src.endsWith(src)) close();
-          else open(src, title + " certificate");
+
+        thumb.addEventListener("click", () => open(src, title + " certificate"));
+        thumb.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open(src, title + " certificate");
+          }
         });
       });
 
