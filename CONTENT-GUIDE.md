@@ -18,7 +18,7 @@ Every section reads from a YAML file in `data/`:
 | Name, role, research interests, social links | `hugo.toml` (the `[params]` block) |
 | Profile photo | replace `static/img/profile.png` |
 | CV PDF | replace `static/files/Shrikanta_Paul_CV.pdf` |
-| CV preview images | replace `static/img/resume-page-1.png` and `resume-page-2.png` |
+| CV preview images | replace `static/img/resume-page-1.png` and `resume-page-2.png` (click either page on the site to read it full size) |
 
 Entries appear on the page in the same order as in the file. Put the newest entry at the top.
 
