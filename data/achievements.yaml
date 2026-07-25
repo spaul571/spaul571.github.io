@@ -14,8 +14,10 @@
   image: img/dean-list-fall-2023.jpg
 
 - title: 24th Place, "Unlock the Algorithm" Programming Contest
-  detail: Competitive programming contest.
+  detail: Competitive programming contest, Fall 2023 final round.
   year: Fall 2023
+  link: https://toph.co/c/unlock-the-algorithm-fall-23-final/standings
+  linkLabel: Official standings
 
 - title: Training Course, "Student Brigade on School Sanitation & Hygiene Education" (BRAC)
   detail: Gained practical experience in community health initiatives and leadership.
