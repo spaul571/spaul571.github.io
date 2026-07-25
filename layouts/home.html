@@ -193,7 +193,8 @@
     {{ range hugo.Data.achievements }}
     <li>
       <span class="award-year">{{ .year }}</span>
-      <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}</span>
+      <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}{{ if .link }}
+        <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}</span>
     </li>
     {{ end }}
   </ul>

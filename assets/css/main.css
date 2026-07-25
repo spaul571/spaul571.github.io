@@ -193,6 +193,8 @@ nav ul a:hover { color: var(--accent); text-decoration: none; }
 .award-year { color: var(--faint); font-size: 0.88rem; font-weight: 500; }
 .award-text { color: var(--muted); font-size: 0.95rem; }
 .award-text strong { color: var(--text); }
+.award-link { white-space: nowrap; font-size: 0.88rem; font-weight: 500; }
+.award-link i { font-size: 0.75rem; }
 
 /* ===== CV ===== */
 .cv-lead { color: var(--muted); margin-bottom: 22px; max-width: 74ch; }

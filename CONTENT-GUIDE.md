@@ -98,7 +98,11 @@ Copy, paste, fill in. Indentation matters in YAML — keep it exactly as shown (
 - title: Award Name
   detail: One line about what it was for.
   year: Fall 2027
+  link: files/Certificate-Name.pdf
+  linkLabel: View certificate
 ```
+
+`link` and `linkLabel` are optional. To attach a certificate, drop the PDF into `static/files/` and point `link` at it (path relative to `static/`). `linkLabel` defaults to "View certificate".
 
 ### Research Interest (`hugo.toml`)
 
