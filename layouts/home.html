@@ -194,7 +194,8 @@
     <li{{ if .image }} class="has-preview"{{ end }}>
       <span class="award-year">{{ .year }}</span>
       <span class="award-text"><strong>{{ .title }}</strong> — {{ .detail }}{{ if .link }}
-        <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}</span>
+        <a href="{{ .link | relURL }}" target="_blank" rel="noopener" class="award-link"><i class="fas fa-arrow-up-right-from-square"></i> {{ .linkLabel | default "View certificate" }}</a>{{ end }}{{ if .image }}
+        <button type="button" class="award-zoom" aria-label="View the {{ .title }} certificate full size"><i class="fas fa-magnifying-glass-plus"></i></button>{{ end }}</span>
       {{ if .image }}
       <span class="award-preview" aria-hidden="true">
         <img src="{{ .image | relURL }}" alt="" loading="lazy" />
@@ -203,6 +204,41 @@
     </li>
     {{ end }}
   </ul>
+
+  <div class="cert-lightbox" id="certLightbox" aria-hidden="true"><img src="" alt="" /></div>
+
+  <script>
+    (function () {
+      const box = document.getElementById("certLightbox");
+      const full = box.querySelector("img");
+
+      function close() {
+        box.classList.remove("open");
+        box.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("lightbox-open");
+      }
+
+      function open(src, alt) {
+        full.src = src;
+        full.alt = alt;
+        box.classList.add("open");
+        box.setAttribute("aria-hidden", "false");
+        document.body.classList.add("lightbox-open");
+      }
+
+      document.querySelectorAll(".award-list li.has-preview").forEach(li => {
+        const src = li.querySelector(".award-preview img").getAttribute("src");
+        const title = li.querySelector(".award-text strong").textContent;
+        li.querySelector(".award-zoom").addEventListener("click", () => {
+          if (box.classList.contains("open") && full.src.endsWith(src)) close();
+          else open(src, title + " certificate");
+        });
+      });
+
+      box.addEventListener("click", close);
+      document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+    })();
+  </script>
 </section>
 
 <!-- ===== CV ===== -->

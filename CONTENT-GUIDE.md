@@ -105,7 +105,9 @@ Copy, paste, fill in. Indentation matters in YAML — keep it exactly as shown (
 
 `link`, `linkLabel` and `image` are all optional.
 
-`image` adds a certificate thumbnail that pops up when the visitor hovers over that award row (hidden on touch screens, which have no hover). Put the picture in `static/img/` and keep it about 900 pixels wide so the page stays fast. Portrait and landscape certificates both work.
+`image` attaches a certificate to that award. A thumbnail pops up on the right of the row when a visitor hovers it (hidden on touch screens, which have no hover), and a magnifying-glass button appears next to the text — clicking it opens the certificate full size over the page. Clicking anywhere on the full-size view, or pressing Escape, closes it again.
+
+Put the picture in `static/img/` and keep it about 900–1200 pixels wide: big enough to look sharp full size, small enough to stay fast. Portrait and landscape certificates both work.
 
 If your certificate is a PDF, convert it first:
 

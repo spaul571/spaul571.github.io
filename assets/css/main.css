@@ -198,13 +198,17 @@ nav ul a:hover { color: var(--accent); text-decoration: none; }
 
 /* Certificate preview on hover */
 .award-list li.has-preview { position: relative; }
-.award-list li.has-preview .award-text strong { cursor: zoom-in; }
+.award-zoom {
+  border: 0; background: none; padding: 0 2px; margin-left: 4px;
+  color: var(--accent); cursor: zoom-in; font-size: 0.9rem; line-height: 1;
+}
+.award-zoom:hover { color: var(--text); }
 .award-preview {
-  position: absolute; z-index: 40; left: 128px; top: calc(100% - 8px);
-  display: block; width: max-content; max-width: min(420px, 78vw); padding: 6px;
+  position: absolute; z-index: 40; right: 0; top: 50%;
+  display: block; width: max-content; max-width: min(380px, 74vw); padding: 6px;
   background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
   box-shadow: 0 14px 34px rgba(31, 41, 51, 0.18);
-  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  opacity: 0; visibility: hidden; transform: translate(8px, -50%);
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
   pointer-events: none;
 }
@@ -212,9 +216,24 @@ nav ul a:hover { color: var(--accent); text-decoration: none; }
 .award-preview img { width: auto; height: auto; max-width: 100%; max-height: 58vh; margin: 0 auto; border-radius: 4px; }
 .award-list li.has-preview:hover .award-preview,
 .award-list li.has-preview:focus-within .award-preview {
-  opacity: 1; visibility: visible; transform: translateY(0);
+  opacity: 1; visibility: visible; transform: translate(0, -50%);
 }
 @media (hover: none) { .award-preview { display: none; } }
+
+/* Full-size certificate viewer */
+.cert-lightbox {
+  position: fixed; inset: 0; z-index: 200; display: flex;
+  align-items: center; justify-content: center; padding: 28px;
+  background: rgba(15, 23, 32, 0.82); cursor: zoom-out;
+  opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s;
+}
+.cert-lightbox.open { opacity: 1; visibility: visible; }
+.cert-lightbox img {
+  width: auto; height: auto; max-width: min(1100px, 94vw); max-height: 92vh;
+  border-radius: 6px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+body.lightbox-open { overflow: hidden; }
+body.lightbox-open .award-preview { display: none; }
 
 /* ===== CV ===== */
 .cv-lead { color: var(--muted); margin-bottom: 22px; max-width: 74ch; }
@@ -295,7 +314,6 @@ footer { border-top: 1px solid var(--border); margin-top: 60px; background: var(
 
 @media (max-width: 520px) {
   .award-list li { grid-template-columns: 1fr; gap: 2px; }
-  .award-preview { left: 0; }
   .pub { padding-left: 20px; padding-top: 44px; }
   .pub::before { top: 16px; }
 }
